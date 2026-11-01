@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>보호소 지도 · 온기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>가까운 보호소 찾기</h1>
+      <p>지금 아이들이 머물고 있는 보호소를 지도에서 확인하고, 내 위치에서 가까운 순으로 살펴보세요.</p>
+    </section>
+
+    <div class="map-toolbar">
+      <div class="field">
+        <label for="m-sido">시도</label>
+        <select id="m-sido"><option value="">전국</option></select>
+      </div>
+      <div class="field field-wide">
+        <span class="label">축종</span>
+        <div class="segmented" role="radiogroup" aria-label="축종">
+          <label><input type="radio" name="m-upkind" value="" checked><span>전체</span></label>
+          <label><input type="radio" name="m-upkind" value="417000"><span>🐶 개</span></label>
+          <label><input type="radio" name="m-upkind" value="422400"><span>🐱 고양이</span></label>
+          <label><input type="radio" name="m-upkind" value="429900"><span>기타</span></label>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" id="btn-locate">📍 내 위치에서 가까운 순</button>
+    </div>
+
+    <div class="map-layout">
+      <aside class="map-side">
+        <div class="map-status" id="map-status" aria-live="polite">불러오는 중…</div>
+        <div class="shelter-panel" id="shelter-panel" hidden></div>
+        <ul class="shelter-list" id="shelter-list" aria-label="보호소 목록"></ul>
+      </aside>
+      <div class="map-wrap"><div id="map"></div></div>
+    </div>
+    <p class="map-hint">공고 종료 후 처리된(입양·반환 등) 아이는 제외하고, 최근 구조된 아이들을 기준으로 보호소를 표시해요.</p>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>

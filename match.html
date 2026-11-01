@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>맞춤 추천 · 온기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>나와 잘 맞는 아이 찾기</h1>
+      <p>생활 환경에 대한 7가지 질문에 답하면, 지금 보호 중인 아이들 중 잘 맞는 친구를 추천해 드려요.</p>
+    </section>
+
+    <section class="quiz" id="quiz" aria-live="polite">
+      <div class="quiz-progress"><div id="quiz-bar"></div></div>
+      <div class="quiz-step" id="quiz-step"></div>
+      <h2 class="quiz-q" id="quiz-q"></h2>
+      <div class="quiz-options" id="quiz-options"></div>
+      <div class="quiz-nav">
+        <button type="button" class="btn" id="quiz-back">← 이전</button>
+      </div>
+    </section>
+
+    <section id="result" hidden>
+      <div class="profile" id="profile"></div>
+      <div class="result-bar">
+        <div class="result-count" id="match-count"></div>
+        <button type="button" class="btn" id="btn-retry-quiz">↺ 테스트 다시 하기</button>
+      </div>
+      <div class="grid" id="match-grid"></div>
+
+      <section class="alert-box" id="alert-box">
+        <div class="alert-text">
+          <h2>🔔 새로운 아이가 오면 알려드릴게요</h2>
+          <p id="alert-cond"></p>
+        </div>
+        <form class="alert-form" id="alert-form" autocomplete="on">
+          <input type="email" name="email" placeholder="이메일 주소" aria-label="이메일 주소" required maxlength="100">
+          <button type="submit" class="btn btn-primary">알림 받기</button>
+        </form>
+        <p class="alert-note" id="alert-note">매일 오전 9시에 새 공고가 있을 때만 메일을 보내요. 메일 하단 링크로 언제든 해지할 수 있어요.</p>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/match.js"></script>
+</body>
+</html>

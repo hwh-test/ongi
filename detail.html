@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상세 정보 · 온기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <button type="button" class="back-link" id="btn-back">← 목록으로</button>
+    <div id="detail-root">
+      <div class="detail">
+        <div class="gallery-main skeleton"><div class="card-img" style="height:100%"></div></div>
+        <div><div class="sk-line w50"></div><div class="sk-line w70"></div><div class="sk-line w40"></div></div>
+      </div>
+    </div>
+    <section id="comment-section" hidden>
+      <h2 class="section-title">응원 한마디 <small id="comment-total" style="font-size:14px;color:var(--text-3)"></small></h2>
+      <div class="comments">
+        <p class="local-note" id="comment-local" hidden>Firebase 설정 전이라 댓글이 이 브라우저에만 저장돼요.</p>
+        <form class="comment-form" id="comment-form" autocomplete="off">
+          <input name="nick" maxlength="12" placeholder="닉네임" aria-label="닉네임">
+          <textarea name="text" maxlength="200" rows="1" placeholder="이 아이에게 응원 한마디를 남겨 주세요" aria-label="응원 내용" required></textarea>
+          <button type="submit" class="btn btn-primary">등록</button>
+        </form>
+        <div class="comment-meta"><span>욕설·개인정보는 남기지 말아 주세요</span><span id="comment-len">0/200</span></div>
+        <ul class="comment-list" id="comment-list"></ul>
+      </div>
+    </section>
+
+    <section id="related-section" hidden>
+      <h2 class="section-title">같은 보호소의 다른 아이들</h2>
+      <div class="grid" id="related-grid"></div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/config.js"></script>
+  <!-- Firebase (compat 버전: 일반 script 태그로 사용) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>온기 · 유기동물 입양 찾기</title>
+  <meta name="description" content="공공데이터포털 구조동물 조회 서비스로 전국 보호소의 유기동물을 찾아보는 웹앱">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>가족을 기다리는 아이들</h1>
+      <p>전국 동물보호센터에 있는 구조동물을 지역·품종·조건별로 찾아보세요.</p>
+    </section>
+
+    <form class="filters" id="filter-form" autocomplete="off">
+      <div class="filter-row">
+        <div class="field span-2">
+          <span class="label">축종</span>
+          <div class="segmented" role="radiogroup" aria-label="축종">
+            <label><input type="radio" name="upkind" value="" checked><span>전체</span></label>
+            <label><input type="radio" name="upkind" value="417000"><span>🐶 개</span></label>
+            <label><input type="radio" name="upkind" value="422400"><span>🐱 고양이</span></label>
+            <label><input type="radio" name="upkind" value="429900"><span>기타</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-kind">품종</label>
+          <select id="f-kind" name="kind" disabled><option value="">축종을 먼저 선택</option></select>
+        </div>
+        <div class="field">
+          <label for="f-state">상태</label>
+          <select id="f-state" name="state">
+            <option value="">전체</option>
+            <option value="notice">공고중</option>
+            <option value="protect">보호중</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <div class="field">
+          <label for="f-sido">시도</label>
+          <select id="f-sido" name="upr_cd"><option value="">전국</option></select>
+        </div>
+        <div class="field">
+          <label for="f-sigungu">시군구</label>
+          <select id="f-sigungu" name="org_cd" disabled><option value="">시도를 먼저 선택</option></select>
+        </div>
+        <div class="field">
+          <label for="f-shelter">보호소</label>
+          <select id="f-shelter" name="care_reg_no" disabled><option value="">시군구를 먼저 선택</option></select>
+        </div>
+        <div class="field">
+          <label for="f-sex">성별</label>
+          <select id="f-sex" name="sex_cd">
+            <option value="">전체</option><option value="M">수컷</option><option value="F">암컷</option><option value="Q">미상</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-neuter">중성화</label>
+          <select id="f-neuter" name="neuter_yn">
+            <option value="">전체</option><option value="Y">완료</option><option value="N">안 함</option><option value="U">미상</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <div class="field">
+          <label for="f-bgnde">구조일 (시작)</label>
+          <input type="date" id="f-bgnde" name="bgnde">
+        </div>
+        <div class="field">
+          <label for="f-endde">구조일 (종료)</label>
+          <input type="date" id="f-endde" name="endde">
+        </div>
+      </div>
+
+      <div class="filter-actions">
+        <button type="button" class="btn" id="btn-reset">↺ 초기화</button>
+      </div>
+    </form>
+
+    <div class="active-chip" id="active-chip" hidden></div>
+
+    <div class="result-bar">
+      <div class="result-count" id="result-count" aria-live="polite">불러오는 중…</div>
+      <label class="sort">
+        정렬
+        <select id="f-sort">
+          <option value="default">최근 구조순</option>
+          <option value="deadline">공고 마감 임박순</option>
+          <option value="waiting">입양 대기 오래된 순</option>
+          <option value="young">어린 순</option>
+        </select>
+      </label>
+    </div>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--red)"></i>공고 마감 3일 이내</span>
+      <span><i class="dot" style="background:var(--green)"></i>공고 종료 · 입양 가능</span>
+      <span><i class="dot" style="background:var(--purple)"></i>입양 대기 2주 이상</span>
+    </div>
+
+    <section class="grid" id="animal-grid" aria-label="구조동물 목록"></section>
+    <nav class="pagination" id="pagination" aria-label="페이지 이동"></nav>
+  </main>
+
+  <script src="js/config.js"></script>
+  <!-- Firebase (compat 버전: 일반 script 태그로 사용) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/list.js"></script>
+</body>
+</html>

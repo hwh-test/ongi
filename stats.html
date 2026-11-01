@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>보호 현황 통계 · 온기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>보호 현황 통계</h1>
+      <p>최근 구조된 동물을 지역·축종·나이·처리 결과별로 한눈에 살펴봐요.</p>
+    </section>
+
+    <div class="stats-toolbar">
+      <div class="segmented" role="radiogroup" aria-label="기간">
+        <label><input type="radio" name="range" value="30"><span>최근 30일</span></label>
+        <label><input type="radio" name="range" value="60" checked><span>60일</span></label>
+        <label><input type="radio" name="range" value="90"><span>90일</span></label>
+      </div>
+      <span class="progress-text" id="progress-text" aria-live="polite"></span>
+    </div>
+
+    <div id="stats-error"></div>
+
+    <section class="kpis">
+      <div class="kpi"><div class="kpi-label">기간 내 구조</div><div class="kpi-value" id="kpi-total">–</div><div class="kpi-note" id="kpi-range"></div></div>
+      <div class="kpi"><div class="kpi-label">지금 공고중</div><div class="kpi-value" id="kpi-notice">–</div><div class="kpi-note">원래 보호자를 찾는 중</div></div>
+      <div class="kpi"><div class="kpi-label">보호중</div><div class="kpi-value" id="kpi-protect">–</div><div class="kpi-note">보호소에서 지내는 아이</div></div>
+      <div class="kpi"><div class="kpi-label">입양된 비율</div><div class="kpi-value" id="kpi-adopt">–</div><div class="kpi-note" id="kpi-adopt-note">표본 기준</div></div>
+    </section>
+
+    <section class="charts">
+      <div class="chart-card wide">
+        <h3>주별 구조 건수</h3>
+        <p class="note">한 주 동안 새로 구조된 동물 수</p>
+        <div class="chart-box"><canvas id="chart-trend" aria-label="주별 구조 건수 선 그래프"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>시도별 구조 건수</h3>
+        <p class="note">기간 내 전체 건수</p>
+        <div class="chart-box tall"><canvas id="chart-sido" aria-label="시도별 구조 건수 막대 그래프"></canvas></div>
+      </div>
+      <div>
+        <div class="chart-card" style="margin-bottom:16px">
+          <h3>축종 비율</h3>
+          <p class="note">기간 내 전체 건수</p>
+          <div class="chart-box" style="height:190px"><canvas id="chart-kind" aria-label="축종 비율 도넛 그래프"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>나이대 분포</h3>
+          <p class="note" id="age-note">최근 구조 표본 기준</p>
+          <div class="chart-box" style="height:190px"><canvas id="chart-age" aria-label="나이대 분포 막대 그래프"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-card wide">
+        <h3>처리 결과</h3>
+        <p class="note" id="state-note">최근 구조 표본 기준</p>
+        <div class="chart-box" style="height:240px"><canvas id="chart-state" aria-label="처리 결과 막대 그래프"></canvas></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/config.js"></script>
+  <!-- Firebase (compat 버전: 일반 script 태그로 사용) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/stats.js"></script>
+</body>
+</html>

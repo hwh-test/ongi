@@ -1,0 +1,56 @@
+{
+  "rules": {
+    "favorites": {
+      "$uid": {
+        ".read": true,
+        "$animalId": {
+          ".write": true,
+          ".validate": "newData.hasChildren(['id', 'kind', 'savedAt'])"
+        }
+      }
+    },
+    "stats": {
+      ".read": true,
+      ".indexOn": [
+        "views",
+        "likes"
+      ],
+      "$animalId": {
+        "views": {
+          ".write": true,
+          ".validate": "newData.isNumber() && ((!data.exists() && newData.val() === 1) || (data.exists() && newData.val() === data.val() + 1))"
+        },
+        "likes": {
+          ".write": true,
+          ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() <= 1) || (data.exists() && newData.val() - data.val() <= 1 && data.val() - newData.val() <= 1))"
+        },
+        "info": {
+          ".write": true,
+          ".validate": "newData.hasChildren(['kind'])"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "comments": {
+      "$animalId": {
+        ".read": true,
+        ".indexOn": [
+          "createdAt"
+        ],
+        "$commentId": {
+          ".write": "!data.exists()",
+          ".validate": "newData.hasChildren(['nick', 'text', 'createdAt']) && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 200 && newData.child('nick').isString() && newData.child('nick').val().length <= 12 && newData.child('createdAt').val() === now"
+        }
+      }
+    },
+    "stories": {
+      ".read": true,
+      "$animalId": {
+        ".write": "!data.exists()",
+        ".validate": "newData.hasChildren(['text', 'createdAt']) && newData.child('text').isString() && newData.child('text').val().length <= 1500 && newData.child('createdAt').val() === now"
+      }
+    }
+  }
+}

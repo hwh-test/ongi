@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>찜 · 랭킹 · 온기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>찜 · 인기 랭킹</h1>
+      <p>마음에 담아둔 아이들의 최신 상태를 확인하고, 많은 사람이 관심을 가진 아이들도 만나보세요.</p>
+    </section>
+
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" data-tab="mine" class="active">내 찜 <span id="tab-fav-count"></span></button>
+      <button type="button" role="tab" data-tab="rank">인기 랭킹</button>
+    </div>
+    <div class="conn" id="conn"></div>
+
+    <section id="tab-mine" role="tabpanel">
+      <div class="grid" id="fav-grid"></div>
+    </section>
+
+    <section id="tab-rank" role="tabpanel" hidden>
+      <div class="rank-cols">
+        <div class="rank-card">
+          <h3>❤️ 찜 많은 아이들</h3>
+          <p class="note">방문자 전체 기준 · 실시간</p>
+          <ol class="rank-list" id="rank-likes"></ol>
+        </div>
+        <div class="rank-card">
+          <h3>👀 많이 본 아이들</h3>
+          <p class="note">상세 페이지 조회수 · 실시간</p>
+          <ol class="rank-list" id="rank-views"></ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/favorites.js"></script>
+</body>
+</html>
